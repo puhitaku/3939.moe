@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css?family=Mukta|Pacifico');
+
+$bar-colors: #373b3e #e12885 #137a7f #86cecb;
+$page-colors: #86cecb #137a7f #e12885 #373b3e;
+$page-colors-next: #137a7f #e12885 #373b3e #373b3e;
+$h-colors: #137a7f #fff #fff #fff;
+
+html {
+    background-color: #137a7f;
+    font-size: 12px;
+}
+
+#app {
+    display: block;
+}
+
+
+a {
+    color: #fff !important;
+    text-decoration: none;
+
+    &.line {
+        text-decoration: underline;
+    }
+    &:hover {
+        color: #fff !important;
+    }
+}
+
+body > .container-fluid {
+    font-family: "Mukta" !important;
+    line-height: 1.3;
+    padding: 0;
+    margin: 0;
+
+    @each $color in $page-colors {
+        $i: index($page-colors, $color);
+        .bg-#{$i} {
+            background-color: $color;
+        }
+    }
+
+    & > .row {
+        width: 100vw;
+
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: -1px; // glitch fix
+
+        @each $color in $page-colors {
+            $i: index($page-colors, $color);
+            .page-#{$i} {
+                flex-grow: 1;
+                width: 0;
+                height: 100%;
+                background: linear-gradient(45deg, nth($page-colors-next, $i) 1.5vw, $color 1.5vw);
+                background-position: bottom left, bottom right, top right, top left;
+                background-repeat: no-repeat;
+                padding: 3vw;
+
+                & > .row:nth-last-child(1) {
+                    margin-bottom: -8px;
+                }
+
+                & > p:nth-last-child(1) {
+                    margin-bottom: 4px;
+                }
+
+                & > .row > .col-sm-6:nth-last-child(n+2) {
+                    margin-bottom: 24px;
+                    @media (min-width: 576px) {
+                        margin-bottom: -8px;
+                    }
+                }
+
+                p {
+                    width: 100%;
+                    color: #fff;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-bottom: 12px;
+                    font-size: 2rem;
+                    text-align: center;
+
+                    .image {
+                        display: inline-block;
+                        background-size: contain;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        width: 24px;
+                        height: 24px;
+                        margin: 0 0.4rem -0.4rem 0.4rem;
+
+                        &.twitter {
+                            background-image: url("../img/w_twitter.png");
+                        }
+                        &.facebook {
+                            background-image: url("../img/w_facebook.png");
+                        }
+                        &.github {
+                            background-image: url("../img/w_github.png");
+                        }
+                    }
+
+                    &.desc {
+                        font-size: 1.5rem;
+                    }
+
+                    &#links {
+                        margin-bottom: 24px;
+                    }
+
+                    & > em {
+                        display: inline-block;
+                        font-style: normal;
+                        background-color: #fff;
+                        color: $color;
+                        padding: 0.1rem 0.4rem 0 0.4rem;
+                        margin: 0 0.3rem;
+                    }
+                }
+
+                .work-image {
+                    height: 200px;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+
+                    &.webdb {
+                        background-image: url("../img/webdb.jpg");
+                    }
+                    &.tank {
+                        background-image: url("../img/tank.jpg");
+                    }
+                }
+
+                h1 {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 6px;
+                    margin-bottom: 24px;
+                    width: 100%;
+                    font-family: "Pacifico";
+                    font-size: 3.5rem;
+                    color: #fff;
+
+                    &#title {
+                        margin-bottom: 10px;
+                    }
+                }
+
+                h2 {
+                    display: flex;
+                    justify-content: center;
+                    margin: 18px 0;
+                    width: 100%;
+                    font-family: "Pacifico";
+                    font-size: 2.5rem;
+                    color: #fff;
+                }
+
+                h3 {
+                    display: flex;
+                    justify-content: center;
+                    margin: 1rem 0;
+                    width: 100%;
+                    font-family: "Mukta";
+                    font-size: 2rem;
+                    font-weight: bolder;
+                    color: #fff;
+                }
+            }
+        }
+
+        .page-4 p {
+            margin-right: 0;
+        }
+
+    }
+
+    .bars {
+        display: flex;
+        flex: 0;
+        width: 4 * 3vw;
+    }
+
+    @each $color in $bar-colors {
+        $i: index($bar-colors, $color);
+        & .bar-#{$i} {
+            width: 3vw;
+            height: 100%;
+            margin-right: -1px;
+            background-color: $color;
+        }
+    }
+
+    .bar-2-last {
+        background: linear-gradient(0, #e12885 0, #373b3e 100%);
+    }
+}
+
+
